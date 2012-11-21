@@ -1,9 +1,14 @@
-# Cookbook
+Cookbook
+========
 
-## Test d'un singleton
+Test d'un singleton
+-------------------
 
-Pour tester si une méthode retourne bien systématiquement la même instance d'un objet,
-vérifiez que deux appels successifs à la méthode testée sont bien identiques.
+Pour tester si une méthode retourne bien systématiquement la même
+instance d'un objet, vérifiez que deux appels successifs à la méthode
+testée sont bien identiques.
+
+::
 
     [php]
     $this
@@ -12,44 +17,57 @@ vérifiez que deux appels successifs à la méthode testée sont bien identiques
             ->isIdenticalTo(\Singleton::getInstance())
     ;
 
-
-## Utilisation dans behat
+Utilisation dans behat
+----------------------
 
 TODO: https://github.com/atoum/atoum/wiki/atoum-et-Behat
 
-## Utilisation dans Jenkins (ou Hudson)
+Utilisation dans Jenkins (ou Hudson)
+------------------------------------
 
 TODO: https://github.com/atoum/atoum/wiki/atoum-et-Jenkins-(ou-Hudson)
 
-## Hook git
+Hook git
+--------
 
 TODO: https://github.com/atoum/atoum/wiki/atoum-et-Git
 
-## Changer l'espace de nom par défaut
+Changer l'espace de nom par défaut
+----------------------------------
 
-TODO: https://github.com/atoum/atoum/wiki/Modifier-l'espace-de-nom-par-d%C3%A9faut-des-tests-unitaires
+TODO:
+https://github.com/atoum/atoum/wiki/Modifier-l'espace-de-nom-par-d%C3%A9faut-des-tests-unitaires
 
-## Utilisation avec ezPublish 
+Utilisation avec ezPublish
+--------------------------
 
 TODO: https://github.com/atoum/atoum/wiki/Utiliser-atoum-avec-eZ-publish
 
-## Utilisation avec Symfony 2
+Utilisation avec Symfony 2
+--------------------------
 
-Si vous souhaitez utiliser atoum au sein de vos projets Symfony, vous pouvez installer le Bundle
-[JediAtoumBundle](#bundle-symfony-2).
+Si vous souhaitez utiliser atoum au sein de vos projets Symfony, vous
+pouvez installer le Bundle `JediAtoumBundle <#bundle-symfony-2>`_.
 
-Si vous souhaitez installer et configurer atoum manuellement, voici comment faire.
+Si vous souhaitez installer et configurer atoum manuellement, voici
+comment faire.
 
-### Étape 1: installation d'atoum
+Étape 1: installation d'atoum
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Si vous utilisez Symfony 2.0, [téléchargez l'archive PHAR](#archive-phar) et placez-la dans le
-répertoire vendor qui est à la racine de votre projet.
+Si vous utilisez Symfony 2.0, `téléchargez l'archive
+PHAR <#archive-phar>`_ et placez-la dans le répertoire vendor qui est à
+la racine de votre projet.
 
-Si vous utilisez Symfony 2.1, [ajoutez atoum dans votre fichier composer.json](#composer).
+Si vous utilisez Symfony 2.1, `ajoutez atoum dans votre fichier
+composer.json <#composer>`_.
 
-### Étape 2: création de la classe de test
+Étape 2: création de la classe de test
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Imaginons que nous voulions tester cet Entity:
+
+::
 
     [php]
     <?php
@@ -87,14 +105,18 @@ Imaginons que nous voulions tester cet Entity:
         private $max_speed;
     }
 
-**Note**: pour plus d'informations sur la création d'Entity dans Symfony 2,
-reportez-vous au
-[manuel Symfony](http://symfony.com/fr/doc/current/book/doctrine.html#creer-une-classe-entite). 
+**Note**: pour plus d'informations sur la création d'Entity dans Symfony
+2, reportez-vous au `manuel
+Symfony <http://symfony.com/fr/doc/current/book/doctrine.html#creer-une-classe-entite>`_.
 
-Créez le répertoire Tests/Units dans votre Bundle (par exemple src/Acme/DemoBundle/Tests/Units).
-C'est dans ce répertoire que seront stoqués tous les tests de ce Bundle.
+Créez le répertoire Tests/Units dans votre Bundle (par exemple
+src/Acme/DemoBundle/Tests/Units). C'est dans ce répertoire que seront
+stoqués tous les tests de ce Bundle.
 
-Créez un fichier Test.php qui servira de base à tous les futurs tests de ce Bundle.
+Créez un fichier Test.php qui servira de base à tous les futurs tests de
+ce Bundle.
+
+::
 
     [php]
     <?php
@@ -141,20 +163,25 @@ Créez un fichier Test.php qui servira de base à tous les futurs tests de ce Bu
         }
     }
 
-**Note**: l'inclusion de l'archive PHAR d'atoum n'est nécessaire que pour Symfony 2.0.
-Supprimez cette ligne dans le cas où vous utilisez Symfony 2.1
+**Note**: l'inclusion de l'archive PHAR d'atoum n'est nécessaire que
+pour Symfony 2.0. Supprimez cette ligne dans le cas où vous utilisez
+Symfony 2.1
 
-**Note**: par défaut, atoum utilise le namespace tests/units pour les tests.
-Or Symfony 2 et son class loader exigent des majuscules au début des noms.
-Pour cette raison, nous changeons le namespace des tests grâce à la méthode
-setTestNamespace('Tests\Units').
+**Note**: par défaut, atoum utilise le namespace tests/units pour les
+tests. Or Symfony 2 et son class loader exigent des majuscules au début
+des noms. Pour cette raison, nous changeons le namespace des tests grâce
+à la méthode setTestNamespace('Tests').
 
-### Étape 3: écriture d'un test
+Étape 3: écriture d'un test
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Dans le répertoire Tests/Units, il vous suffit de recréer l'arborescence des classes que vous
-souhaitez tester (par exemple src/Acme/DemoBundle/Tests/Units/Entity/Car.php).
+Dans le répertoire Tests/Units, il vous suffit de recréer l'arborescence
+des classes que vous souhaitez tester (par exemple
+src/Acme/DemoBundle/Tests/Units/Entity/Car.php).
 
 Créons notre fichier de test:
+
+::
 
     [php]
     <?php
@@ -179,9 +206,12 @@ Créons notre fichier de test:
         }
     }
 
-### Étape 4: lancement des tests
+Étape 4: lancement des tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Si vous utilisez Symfony 2.0:
+
+::
 
     [bash]
     # Lancement des tests d'un fichier
@@ -192,6 +222,8 @@ Si vous utilisez Symfony 2.0:
 
 Si vous utilisez Symfony 2.1:
 
+::
+
     [bash]
     # Lancement des tests d'un fichier
     ./bin/atoum -f src/Acme/DemoBundle/Tests/Units/Entity/Car.php
@@ -199,11 +231,12 @@ Si vous utilisez Symfony 2.1:
     # Lancement de tous les tests du Bundle
     ./bin/atoum -d src/Acme/DemoBundle/Tests/Units
 
-**Note**: vous pouvez obtenir plus d'informations sur le [lancement des tests](#lancement-des-tests)
-au chapitre 3.
-
+**Note**: vous pouvez obtenir plus d'informations sur le `lancement des
+tests <#lancement-des-tests>`_ au chapitre 3.
 
 Dans tous les cas, voilà ce que vous devriez obtenir:
+
+::
 
     [bash]
     > PHP path: /usr/bin/php
@@ -225,3 +258,4 @@ Dans tous les cas, voilà ce que vous devriez obtenir:
     ==> Acme\DemoBundle\Entity\Car::getMaxSpeed(): 0.00%
     > Running duration: 0.24 second.
     Success (1 test, 1/1 method, 0 skipped method, 4 assertions) !    
+
